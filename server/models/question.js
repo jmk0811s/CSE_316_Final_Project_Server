@@ -11,21 +11,14 @@ var QuestionSchema = new Schema(
             required: true,
         },
         header: {type: String, required: true},
-        answer: {type: String, required: true},
+        answer: {
+            text: {type: String},
+            number: {type: Number},
+            boolean: {type: Boolean},
+            multiple_choice: {type : Array, "default" : []}
+        },
         daylog: {type: Schema.Types.ObjectID, ref: "Daylog", required: true}
     }
 );
 
 module.exports = mongoose.model('Question', QuestionSchema);
-
-
-/*
-
-/daylog             All daylogs, each daylog have group of questions
-/daylog/{date}      The daylog at certain date
-/questions          All questions
-/questions/{date}   Questions created on certain date
-/questions/{type}   Questions of certain type
-
-
- */
