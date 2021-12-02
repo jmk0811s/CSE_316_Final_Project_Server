@@ -239,6 +239,12 @@ server.get('/api/questions/:id', requireLogin, wrapAsync(async function (req, re
 
 //get questions by type @
 
+server.get('/api/questions/findByDaylog/:id', requireLogin, wrapAsync(async function (req, res) {
+    let id = req.params.id;
+    const questions = await Question.find({daylog: id}); // @
+    res.json(questions);
+}));
+
 //get questions by date @
 
 //add question
