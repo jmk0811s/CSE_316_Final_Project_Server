@@ -40,7 +40,7 @@ const sessionConfig = {
         httpOnly: true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7,
-        secure: true
+        // secure: true
     }
 }
 
@@ -60,7 +60,7 @@ server.use((req, res, next) => {
 
 
 const requireLogin = (req, res, next) => {
-    if (!req.session.userId) {
+    if (req.session.userId == null) {
         return res.status(401).send("Need to login");
     }
     next();
@@ -97,6 +97,7 @@ server.post('/api/login', wrapAsync(async function (req, res) {
 
 //logout
 server.post('/api/logout', requireLogin, wrapAsync(async function (req, res) {
+    console.log(req.session.userId)
     req.session.userId = null;
     res.sendStatus(204);
 }));
