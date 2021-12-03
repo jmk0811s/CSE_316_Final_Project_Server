@@ -85,6 +85,7 @@ server.post('/api/users', wrapAsync(async function (req, res) {
 //login
 server.post('/api/login', wrapAsync(async function (req, res) {
     const { email, password } = req.body;
+    console.log(email);
     const user = await User.findAndValidate(email, password);
     if (user) {
         req.session.userId = user._id;
@@ -237,13 +238,15 @@ server.get('/api/questions/:id', requireLogin, wrapAsync(async function (req, re
     }
 }));
 
-//get questions by type @
-
+//get questions by daylog ID @
 server.get('/api/questions/findByDaylog/:id', requireLogin, wrapAsync(async function (req, res) {
     let id = req.params.id;
     const questions = await Question.find({daylog: id}); // @
     res.json(questions);
 }));
+
+//get questions by type @
+
 
 //get questions by date @
 
