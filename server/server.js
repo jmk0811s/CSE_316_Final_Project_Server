@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const User = require('./models/user');
 const Response = require('./models/response');
 const Question = require('./models/question');
+const Address = require('./models/address');
 
 const server = express();
 const bodyParser = require('body-parser');
@@ -75,7 +76,10 @@ const requireLogin = (req, res, next) => {
 //register
 server.post('/api/users', wrapAsync(async function (req, res) {
     const { name, email, password, address1, address2, profile_url } = req.body;
+    // const addr = new Address({address1, address2})
+    // await addr.save();
     const user = new User({ name, email, password, address1, address2, profile_url })
+    // const user = new User({ name, email, password, addr, profile_url })
     await user.save();
     req.session.userId = user._id;
     res.sendStatus(204);
@@ -123,6 +127,10 @@ server.get('/api/currentuser', wrapAsync(async function (req, res) {
 //update user
 server.put('/api/users/:id', requireLogin, wrapAsync(async function (req, res) {
     const id = req.params.id;
+
+    // const addr = new Address({req.body.address1, req.body.address2})
+    // await addr.save();
+
     console.log("PUT with id: " + id + ", body: " + JSON.stringify(req.body));
     await User.findByIdAndUpdate(id, {
             'name': req.body.name,
@@ -130,6 +138,7 @@ server.put('/api/users/:id', requireLogin, wrapAsync(async function (req, res) {
             'password': req.body.password,
             'address1': req.body.address1,
             'address2': req.body.address2,
+            // 'address' : addr._id,
             'profile_url': req.body.profile_url,
         },
         {runValidators: true});

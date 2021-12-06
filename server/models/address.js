@@ -2,11 +2,11 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
-var AnswerSchema = new Schema(
+var AddressSchema = new Schema(
     {
         address1: {type: String},
         address2: {type: String}
     }
 );
 
-module.exports = mongoose.model('Answer', AnswerSchema);
+module.exports = mongoose.model('Address', AddressSchema);
