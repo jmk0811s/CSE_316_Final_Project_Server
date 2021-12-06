@@ -129,18 +129,26 @@ server.get('/api/currentuser', wrapAsync(async function (req, res) {
 //update user
 server.put('/api/users/:id', requireLogin, wrapAsync(async function (req, res) {
     const id = req.params.id;
-    const {name, email, password, addr1, addr2, profile_url} = req.body;
-    const addr = new Address({addr1, addr2})
-    await addr.save();
+    const {name, email, password, address1, address2, profile_url} = req.body;
+    // const addr = new Address({address1, address2})
+    // await addr.save();
+    const user = await User.findById(id);
+    await Address.findByIdAndUpdate(user.address, {
+        'address1': address1,
+        'address2': address2,
+        },
+        {runValidators: true});
+
+
+
+
 
     console.log("PUT with id: " + id + ", body: " + JSON.stringify(req.body));
     await User.findByIdAndUpdate(id, {
             'name': req.body.name,
             "email": req.body.email,
             'password': req.body.password,
-            // 'address1': req.body.address1,
-            // 'address2': req.body.address2,
-            'address' : addr._id,
+            'address' : user.address,
             'profile_url': req.body.profile_url,
         },
         {runValidators: true});
