@@ -257,6 +257,9 @@ server.post('/api/questions', requireLogin, wrapAsync(async function (req, res) 
         type: req.body.type,
         header: req.body.header,
         answer: req.body.answer,
+        mdate: req.body.mdate,
+        nanoid: req.body.nanoid,
+        creator: req.session.userId,
         daylog: req.body.daylog
     })
     await newQuestion.save();
@@ -269,10 +272,13 @@ server.put('/api/questions/:id', requireLogin, wrapAsync(async function (req, re
     console.log("PUT with id: " + id + ", body: " + JSON.stringify(req.body));
     await Question.findByIdAndUpdate(id,
         {
-            "type": req.body.type,
-            "header": req.body.header,
-            "answer": req.body.answer,
-            "daylog": req.body.daylog
+            type: req.body.type,
+            header: req.body.header,
+            answer: req.body.answer,
+            mdate: req.body.mdate,
+            nanoid: req.body.nanoid,
+            creator: req.session.userId,
+            daylog: req.body.daylog
         },
         {runValidators: true});
     res.sendStatus(204);
@@ -280,6 +286,88 @@ server.put('/api/questions/:id', requireLogin, wrapAsync(async function (req, re
 
 //delete question
 server.delete('/api/questions/:id', requireLogin, wrapAsync(async function (req, res) {
+    const id = req.params.id;
+    const result = await Question.findByIdAndDelete(id);
+    console.log("Deleted successfully: " + result);
+    res.json(result);
+}));
+
+////////////////////////////////////////////////////////////////////////////////
+
+/*
+ * Answered Question
+ */
+
+//get questions @
+server.get('/api/questions_answered/', requireLogin, wrapAsync(async function (req, res) {
+    const questions = await Question.find({creator: req.session.userId}); // @
+    res.json(questions);
+}));
+
+//get question by id
+server.get('/api/questions_answered/:id', requireLogin, wrapAsync(async function (req, res) {
+    let id = req.params.id;
+    if (mongoose.isValidObjectId(id)) {
+        const question = await Question.findById(id);
+        if (question) {
+            res.json(question);
+            return;
+        } else {
+            throw new Error('Question Not Found');
+        }
+    } else {
+        throw new Error('Invalid Question Id');
+    }
+}));
+
+//get questions by daylog ID @
+server.get('/api/questions_answered/findByDaylog/:id', requireLogin, wrapAsync(async function (req, res) {
+    let id = req.params.id;
+    const questions = await Question.find({daylog: id}); // @
+    res.json(questions);
+}));
+
+//get questions by type @
+
+
+//get questions by date @
+
+//add question
+server.post('/api/questions_answered', requireLogin, wrapAsync(async function (req, res) {
+    console.log("Posted with body: " + JSON.stringify(req.body));
+    const newQuestion = new Question({
+        type: req.body.type,
+        header: req.body.header,
+        answer: req.body.answer,
+        mdate: req.body.mdate,
+        nanoid: req.body.nanoid,
+        creator: req.session.userId,
+        daylog: req.body.daylog
+    })
+    await newQuestion.save();
+    res.json(newQuestion);
+}));
+
+//update question @
+server.put('/api/questions_answered/:id', requireLogin, wrapAsync(async function (req, res) {
+    const id = req.params.id;
+    console.log("PUT with id: " + id + ", body: " + JSON.stringify(req.body));
+    await Question.findByIdAndUpdate(id,
+        {
+            type: req.body.type,
+            header: req.body.header,
+            answer: req.body.answer,
+            mdate: req.body.mdate,
+            nanoid: req.body.nanoid,
+            creator: req.session.userId,
+            daylog: req.body.daylog
+        },
+        {runValidators: true});
+    res.sendStatus(204);
+}));
+
+//delete question
+server.delete('/api/questions_answered/:id', requireLogin, wrapAsync(async function (req, res) {
     const id = req.params.id;
     const result = await Question.findByIdAndDelete(id);
     console.log("Deleted successfully: " + result);

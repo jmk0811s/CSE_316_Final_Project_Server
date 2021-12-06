@@ -8,8 +8,9 @@ var UserSchema = new Schema(
         name: {type: String},
         email: {type: String, trim: true, unique: true, required: true},
         password: {type: String, required: true, minlength: 6},
-        address1: {type: String},
-        address2: {type: String},
+        address1: {type: String}, // Should be deleted
+        address2: {type: String}, // Should be deleted
+        //address: {type: Schema.Types.ObjectID, ref: "Address"}, // Should be added
         profile_url: {type: String}
     }
 );
