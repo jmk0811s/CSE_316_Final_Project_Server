@@ -11,17 +11,9 @@ var QuestionSchema = new Schema(
             required: true,
         },
         header: {type: String, default: ''},
-        answer: {
-            text: {type: String},
-            number: {type: Number},
-            boolean: {type: Boolean},
-            multiple_choice: {type : Array, "default" : []}
-        },
         mdate: {type: Date, required: true},
         nanoid: {type: String, required: true},
-        creator: {type: Schema.Types.ObjectID, ref: "User"},
-        form: {type: Schema.Types.ObjectID, ref: "Form"},
-        daylog: {type: Schema.Types.ObjectID, ref: "Daylog"}
+        creator: {type: Schema.Types.ObjectID, ref: "User"}
     }
 );
 
