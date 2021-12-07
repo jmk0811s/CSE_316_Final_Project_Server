@@ -255,6 +255,7 @@ server.post('/api/questions', requireLogin, wrapAsync(async function (req, res) 
         type: req.body.type,
         header: req.body.header,
         mdate: req.body.mdate,
+        choices: req.body.choices,
         nanoid: req.body.nanoid,
         creator: req.session.userId
     })
@@ -271,6 +272,7 @@ server.put('/api/questions/:id', requireLogin, wrapAsync(async function (req, re
             type: req.body.type,
             header: req.body.header,
             mdate: req.body.mdate,
+            choices: req.body.choices,
             nanoid: req.body.nanoid,
             creator: req.session.userId
         },
@@ -299,7 +301,7 @@ server.get('/api/responses/', requireLogin, wrapAsync(async function (req, res) 
 }));
 
 //get response by id
-server.get('/api/response/:id', requireLogin, wrapAsync(async function (req, res) {
+server.get('/api/responses/:id', requireLogin, wrapAsync(async function (req, res) {
     let id = req.params.id;
     if (mongoose.isValidObjectId(id)) {
         const response = await Response.findById(id);
@@ -317,11 +319,12 @@ server.get('/api/response/:id', requireLogin, wrapAsync(async function (req, res
 //get responses by date @
 
 //add response
-server.post('/api/response', requireLogin, wrapAsync(async function (req, res) {
+server.post('/api/responses', requireLogin, wrapAsync(async function (req, res) {
     console.log("Posted with body: " + JSON.stringify(req.body));
     const newResponse = new Response({
         response: req.body.response,
         date: req.body.date,
+        nanoid: req.body.nanoid,
         question: req.body.question,
         creator: req.session.userId
     })
@@ -330,13 +333,14 @@ server.post('/api/response', requireLogin, wrapAsync(async function (req, res) {
 }));
 
 //update response
-server.put('/api/response/:id', requireLogin, wrapAsync(async function (req, res) {
+server.put('/api/responses/:id', requireLogin, wrapAsync(async function (req, res) {
     const id = req.params.id;
     console.log("PUT with id: " + id + ", body: " + JSON.stringify(req.body));
     await Response.findByIdAndUpdate(id,
         {
             response: req.body.response,
             date: req.body.date,
+            nanoid: req.body.nanoid,
             question: req.body.question,
             creator: req.session.userId
         },
@@ -345,7 +349,7 @@ server.put('/api/response/:id', requireLogin, wrapAsync(async function (req, res
 }));
 
 //delete response
-server.delete('/api/response/:id', requireLogin, wrapAsync(async function (req, res) {
+server.delete('/api/responses/:id', requireLogin, wrapAsync(async function (req, res) {
     const id = req.params.id;
     const result = await Response.findByIdAndDelete(id);
     console.log("Deleted successfully: " + result);

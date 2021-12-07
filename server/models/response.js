@@ -11,6 +11,7 @@ var ResponseSchema = new Schema(
             multiple_choice: {type : Array, "default" : []}
         },
         date: {type: Date, required: true},
+        nanoid: {type: String, required: true},
         question: {type: Schema.Types.ObjectID, ref: "Question"},
         creator: {type: Schema.Types.ObjectID, ref: "User"}
     }

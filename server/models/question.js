@@ -11,6 +11,7 @@ var QuestionSchema = new Schema(
             required: true,
         },
         header: {type: String, default: ''},
+        choices: {type: Array, default: []},
         mdate: {type: Date, required: true},
         nanoid: {type: String, required: true},
         creator: {type: Schema.Types.ObjectID, ref: "User"}
