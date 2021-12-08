@@ -8,8 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
-    "node": "6.x",
-    "npm": "6.x"
+    "node": "17.x",
+    "npm": "8.x"
   },
   "homepage": "https://app.herokuapp.com/",
   "keywords": [],
