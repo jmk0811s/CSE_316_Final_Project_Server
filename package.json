@@ -11,6 +11,7 @@
     "node": "6.x",
     "npm": "6.x"
   },
+  "homepage": "https://app.herokuapp.com/",
   "keywords": [],
   "author": "",
   "license": "ISC",
