@@ -6,6 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="91974c6a-b3e1-4262-a9a2-ba042f15e62d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/address.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/address.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/daylog.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/daylog.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/question.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/response.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/response.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +30,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/models/response.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/models/address.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/package.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/server.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/models/user.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/models/question.js" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="21rD3HSTwfcsX9aA4l4yTRI9VYX" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -44,6 +61,9 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -62,7 +82,7 @@
       <workItem from="1638781212397" duration="2017000" />
       <workItem from="1638871374120" duration="1225000" />
       <workItem from="1638953703517" duration="1896000" />
-      <workItem from="1638982509202" duration="1520000" />
+      <workItem from="1638982509202" duration="2267000" />
     </task>
     <servers />
   </component>
